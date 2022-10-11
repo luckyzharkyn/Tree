@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tree, .two {
+  display: flex;
+}
+
+.main, .PodOtdeli, .Rukovodstvo, .odOtdeli, .rukovodstvo1 {
+  width: 300px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: green;
+  border-radius: 30px;
+  color: white;
+  font-size: 20px;
+  margin: 20px;
+}
+
+.two {
+  border: 1px solid black;
+}
+
+.Otdel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new_tree {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
