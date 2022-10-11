@@ -9,7 +9,7 @@ function Component() {
 
   const [dates, setDates] = useState([
     {
-      "GosOrganName": "Акимат города Астана",s
+      "GosOrganName": "Акимат города Астана",
       "FirstRuk": [
         {
           "FirstRukName":"Жаркын Маркабаев",
