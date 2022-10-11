@@ -1,5 +1,3 @@
-
-
 function Component() {
   const show = true;
   const pododdel = true;
