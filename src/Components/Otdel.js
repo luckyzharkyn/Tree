@@ -1,15 +1,14 @@
-import Test1 from "./Test1"
-function Otdel() {
+import FirstOtdels from "./otdel/FirstOtdels"
+import Rukovodstvo from "./Rukovodstvo"
+
+function Otdel({id, show, changeShow}) {
     return <>
         <div className="Otdel">
             <div className="rukovodstvo">
-                <div className="odOtdeli">
-                        <p>rukovodstvo1</p>
-                        <p>text2</p>
-                </div>
+                <Rukovodstvo />
             </div>
             <div className="tree_column">
-                <Test1 />
+                <FirstOtdels id={id} show={show} changeShow={changeShow}/>
             </div>
         </div>
     </>

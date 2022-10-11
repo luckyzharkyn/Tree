@@ -5,11 +5,12 @@
   align-items: center;
 }
 
-.tree, .two {
+.tree {
   display: flex;
+  align-items: flex-start;
 }
 
-.main, .PodOtdeli, .Rukovodstvo, .odOtdeli, .rukovodstvo1 {
+.main, .PodOtdeli, .Rukovodstvo, .doljnost, .rukovodstvoOtdela, .odOtdeli {
   width: 300px;
   border: 1px solid black;
   text-align: center;
@@ -18,10 +19,6 @@
   color: white;
   font-size: 20px;
   margin: 20px;
-}
-
-.two {
-  border: 1px solid black;
 }
 
 .Otdel {
