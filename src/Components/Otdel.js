@@ -1,14 +1,24 @@
-import FirstOtdels from "./otdel/FirstOtdels"
+import SupervisedUnit from "./otdel/SupervisedUnit"
 import Rukovodstvo from "./Rukovodstvo"
 
-function Otdel({id, show, changeShow}) {
+function Otdel({Rukovoditel, supervisedUnits, showId}) {
+    const supervisedUnitsShow = supervisedUnits.map(obj => {
+        return <SupervisedUnit 
+                    key={obj.id}
+                    Rukovoditel={obj.Rukovoditel}
+                    OtdelFullInfo={obj.OtdelFullInfo}
+                    showId={showId}
+                />
+    })
+
     return <>
         <div className="Otdel">
-            <div className="rukovodstvo">
-                <Rukovodstvo />
-            </div>
-            <div className="tree_column">
-                <FirstOtdels id={id} show={show} changeShow={changeShow}/>
+            <Rukovodstvo id={Rukovoditel.id}
+                            Rukovoditel={Rukovoditel} 
+                            showId={showId}
+            />
+            <div className="tree_row">
+                {supervisedUnitsShow}
             </div>
         </div>
     </>

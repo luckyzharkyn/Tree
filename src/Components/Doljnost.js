@@ -1,9 +1,9 @@
 
-function Doljnost() {
+function Doljnost({name, doljnost}) {
     return <>
         <div className="doljnost">
-            <p>person</p>
-            <p>text2</p>
+            <p>{name}</p>
+            <p>{doljnost}</p>
         </div>
     </>
 }

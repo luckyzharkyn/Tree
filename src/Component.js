@@ -1,73 +1,111 @@
 import { useState } from "react";
 import Otdel from "./Components/Otdel"
+import Rukovodstvo from "./Components/Rukovodstvo";
+
+function id() {
+  return (performance.now().toString(36)+Math.random().toString(36)).replace(/\./g,"");
+}
+
 function Component() {
-  const [status, setStatus] = useState([
-    {id: 1, show: false},
-    {id: 2, show: false},
-    {id: 3, show: false},
-  ])
-
-  const [dates, setDates] = useState([
-    {
-      "GosOrganName": "Акимат города Астана",
-      "FirstRuk": [
-        {
-          "FirstRukName":"Жаркын Маркабаев",
-          "FirstRukDoljnost":"Председатель"
-        }],
-        Otdels: [
-          {
-            "id": 1,
-            "Rukovoditel":[{
-              "RukovoditelName":"Бахтияр Шапанулы",
-              "RukovoditelDoljnost": "руководитель"
-          }]
-          }
-        ]
-    }
-  ])
-
-  function countOtdels() {
-    let sum = 0;
-    let count = dates.forEach(obj => {
-      obj.Otdels.map(elem => {
-          sum++
-      })
-    })
-    return sum;
-  } 
   
 
-  const changeShow = (id) => {
-      setStatus(status.map(obj => {
-          if(obj.id === id) {
-            return {...obj, show: !obj.show}
-          } else {
-            return {...obj, show: false}
-          }
-      }))
+
+  const [dates, setDates] = useState(
+    {
+      id: id(),
+      "GosOrganName": "Акимат города Астана",
+      "Rukovoditel": 
+        {
+          "id": id(),
+          "RukovoditelName":"Жаркын Маркабаев",
+          "RukovoditelDoljnost":"Председатель",
+          "otdelName": ""
+        },
+        Otdels: [
+          {
+            "Rukovoditel":{
+              "id": id(),
+              "kategory": 1,
+              "showThis":true,
+              "showChildres":true,
+              "RukovoditelName":"Бахтияр Шапанулы",
+              "RukovoditelDoljnost": "руководство",
+              "otdelName": "OtdelName1"
+            },
+            "supervisedUnits": [
+              {
+                "Rukovoditel":{
+                  "id":id(),
+                  "kategory": 2,
+                  "showThis":true,
+                  "showChildres":true,
+                  "RukovoditelName":"Бахтияр Шапанулы",
+                  "RukovoditelDoljnost": "руководитель",
+                  "otdelName": "OtdelName1"
+                },
+                OtdelFullInfo: [
+                  {
+                    "Rukovoditel":{
+                      "id":id(),
+                      "kategory": 3,
+                      "showThis":true,
+                      "showChildres":true,
+                      "RukovoditelName":"Бахтияр Шапанулы",
+                      "RukovoditelDoljnost": "руководитель",
+                      "otdelName": "OtdelName1"
+                    },
+                    "employees": [
+                      {
+                        "id":id(),
+                        "name":"Ожикова А.Е",
+                        "doljnost": "Главный консультант"
+                      },
+                      {
+                        "id":id(),
+                        "name":"Шакаева Г.К.",
+                        "doljnost": "Главный эксперт"
+                      },
+                    ]
+                  },
+                ]
+              },
+            ]
+          },
+          
+        ]
+    }
+  )
+
+  
+  const showId = (id) => {  // changeVisible
+    let OtdelsClone = Array.from(dates.Otdels);
+    let result = Otdels.map(obj => {
+        if(obj.Rukovoditel.id === id) {
+            obj.Rukovoditel.showChildres = true;
+            return obj
+        } 
+    })
+    setDates({...dates, })
   }
 
-  const Otdels = status.map(obj => {
+
+
+  const Otdels = dates.Otdels.map(obj => {
     return <Otdel 
               key={obj.id} 
-              id={obj.id} 
-              show={obj.show} 
-              changeShow={changeShow}/>
+              Rukovoditel={obj.Rukovoditel}
+              supervisedUnits={obj.supervisedUnits}
+              showId={showId}
+              />
   })
 
   return <>
     <div className="wrapper">
-      <div className="mainTree">
-          <div className="main">
-                <p>Госорган</p>
-                <p>text2</p>
-            </div>
-          <div className="main">
-                <p>Председатель</p>
-                <p>text2</p>
-          </div>
+      <div className="main">
+            <p>{dates.GosOrganName}</p>
       </div>
+      <Rukovodstvo id={dates.id} 
+                   Rukovoditel={dates.Rukovoditel}/>
       <div className="tree">
           {Otdels}
       </div>
