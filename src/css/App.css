@@ -27,7 +27,6 @@
 }
 
 .BodyOtdels {
-  position: absolute;
   display: flex;
   flex-direction: row;
 }
@@ -37,7 +36,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 20px;
 }
 
 .new_tree {
@@ -45,21 +43,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 150px;
 }
 
 .dontShow {
   transition-duration: 1s;
-  opacity: 0;
-  visibility: collapse;
   transform: scale(0);
+  visibility: collapse;
 }
 
 .show {
   transition-duration: 1s;
-  opacity: 100;
-  visibility: visible;
 }
 
-.relativeClass {
-  position: relative;
+.BodyOtdel {
+  margin: 0 20px;
+}
+
+.BodyTree_columnOtdels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.canvas-container {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
 }

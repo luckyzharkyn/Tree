@@ -9,7 +9,6 @@ function id() {
 function Component() {
   
 
-
   const [dates, setDates] = useState(
     {
       "GosOrganName": "Акимат города Астана",
@@ -95,6 +94,68 @@ function Component() {
                   },
                 ]
               },
+              {
+                id: id(),
+                "Rukovoditel":{
+                  "id":id(),
+                  "kategory": 3,
+                  "showThis":true,
+                  "showChildrens":false,
+                  "RukovoditelName":"Бахтияр Шапанулы",
+                  "RukovoditelDoljnost": "руководитель",
+                  "otdelName": "OtdelName1"
+                },
+                OtdelFullInfo: [
+                  {
+                    id: id(),
+                    "Rukovoditel":{
+                      "id":id(),
+                      "kategory": 4,
+                      "showThis":false,
+                      "showChildrens":false,
+                      "RukovoditelName":"Бахтияр Шапанулы",
+                      "RukovoditelDoljnost": "руководитель",
+                      "otdelName": "OtdelName1"
+                    },
+                    "employees": [
+                      {
+                        "id":id(),
+                        "name":"Ожикова А.Е",
+                        "doljnost": "Главный консультант"
+                      },
+                      {
+                        "id":id(),
+                        "name":"Шакаева Г.К.",
+                        "doljnost": "Главный эксперт"
+                      },
+                    ]
+                  },
+                  {
+                    id: id(),
+                    "Rukovoditel":{
+                      "id":id(),
+                      "kategory": 4,
+                      "showThis":false,
+                      "showChildrens":false,
+                      "RukovoditelName":"Бахтияр Шапанулы",
+                      "RukovoditelDoljnost": "руководитель",
+                      "otdelName": "OtdelName1"
+                    },
+                    "employees": [
+                      {
+                        "id":id(),
+                        "name":"Ожикова А.Е",
+                        "doljnost": "Главный консультант"
+                      },
+                      {
+                        "id":id(),
+                        "name":"Шакаева Г.К.",
+                        "doljnost": "Главный эксперт"
+                      },
+                    ]
+                  },
+                ]
+              },
             ]
           }, 
           {
@@ -145,6 +206,92 @@ function Component() {
                       },
                     ]
                   },
+                  {
+                    id: id(),
+                    "Rukovoditel":{
+                      "id":id(),
+                      "kategory": 4,
+                      "showThis":false,
+                      "showChildrens":false,
+                      "RukovoditelName":"Бахтияр Шапанулы",
+                      "RukovoditelDoljnost": "руководитель",
+                      "otdelName": "OtdelName1"
+                    },
+                    "employees": [
+                      {
+                        "id":id(),
+                        "name":"Ожикова А.Е",
+                        "doljnost": "Главный консультант"
+                      },
+                      {
+                        "id":id(),
+                        "name":"Шакаева Г.К.",
+                        "doljnost": "Главный эксперт"
+                      },
+                    ]
+                  },
+                ]
+              },
+              {
+                id: id(),
+                "Rukovoditel":{
+                  "id":id(),
+                  "kategory": 3,
+                  "showThis":true,
+                  "showChildrens":false,
+                  "RukovoditelName":"Бахтияр Шапанулы",
+                  "RukovoditelDoljnost": "руководитель",
+                  "otdelName": "OtdelName1"
+                },
+                OtdelFullInfo: [
+                  {
+                    id: id(),
+                    "Rukovoditel":{
+                      "id":id(),
+                      "kategory": 4,
+                      "showThis":false,
+                      "showChildrens":false,
+                      "RukovoditelName":"Бахтияр Шапанулы",
+                      "RukovoditelDoljnost": "руководитель",
+                      "otdelName": "OtdelName1"
+                    },
+                    "employees": [
+                      {
+                        "id":id(),
+                        "name":"Ожикова А.Е",
+                        "doljnost": "Главный консультант"
+                      },
+                      {
+                        "id":id(),
+                        "name":"Шакаева Г.К.",
+                        "doljnost": "Главный эксперт"
+                      },
+                    ]
+                  },
+                  {
+                    id: id(),
+                    "Rukovoditel":{
+                      "id":id(),
+                      "kategory": 4,
+                      "showThis":false,
+                      "showChildrens":false,
+                      "RukovoditelName":"Бахтияр Шапанулы",
+                      "RukovoditelDoljnost": "руководитель",
+                      "otdelName": "OtdelName1"
+                    },
+                    "employees": [
+                      {
+                        "id":id(),
+                        "name":"Ожикова А.Е",
+                        "doljnost": "Главный консультант"
+                      },
+                      {
+                        "id":id(),
+                        "name":"Шакаева Г.К.",
+                        "doljnost": "Главный эксперт"
+                      },
+                    ]
+                  },
                 ]
               },
             ]
@@ -160,23 +307,38 @@ function Component() {
         ruk.showChildrens = !ruk.showChildrens;
         return supervisedUnit
     } else {
+      ruk.showChildrens = false;
+      return supervisedUnit
+    }
+    } else {
+      ruk.showChildrens = false;
       return supervisedUnit
     }
   }
+  const RukArray = (id, kategory, obj) => {
+      obj.Rukovoditel.showThis = true;
+      let supervisedUnitsArray = obj.supervisedUnits.map(supervisedUnit => {
+        return changeSupervised(supervisedUnit, kategory, id)
+      })
+
+      if(obj.Rukovoditel.id === id) {
+        // if(!obj.Rukovoditel.showChildrens) {
+        //     obj.Rukovoditel.showChildrens = true;
+        // } else {
+        //     obj.Rukovoditel.showChildrens = false;
+        // }
+            
+          return {...obj, supervisedUnits: supervisedUnitsArray}
+      } else {
+        return {...obj, supervisedUnits: supervisedUnitsArray}
+      }
   }
-  
   const showId = (id, kategory) => {  // changeVisible
     
     let result = dates.Otdels.map(obj => {
       
       if(obj.Rukovoditel.kategory === kategory) {
-          obj.Rukovoditel.showThis = true;
-          if(obj.Rukovoditel.id === id) {
-              obj.Rukovoditel.showChildrens = !obj.Rukovoditel.showChildrens;
-              return obj
-          } else {
-            return obj
-          }
+          return RukArray(id, kategory, obj)
       } else {
         let supervisedUnitsArray = obj.supervisedUnits.map(supervisedUnit => {
             return changeSupervised(supervisedUnit, kategory, id)

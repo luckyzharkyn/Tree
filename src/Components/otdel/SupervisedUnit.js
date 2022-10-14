@@ -16,17 +16,17 @@ function SupervisedUnit({Rukovoditel, OtdelFullInfo, showId, kategory}) {
 
     let result;
     if(Rukovoditel.showThis) {
-        result = <div className="new_tree">
+        result = <>
+                 <div className="new_tree">
                     <Rukovodstvo key={Rukovoditel.id}
                                 id={Rukovoditel.id}
                                 Rukovoditel={Rukovoditel} 
                                 showId={showId} 
                                 kategory={kategory}
                     />
-                    <div className="relativeClass">
-                        <div className={Rukovoditel.showChildrens ? "BodyOtdels show" : "dontShow"}>{OtdelFullInfos}</div>
-                    </div>
+                    <div className={Rukovoditel.showChildrens ? "BodyOtdels show" : "BodyOtdels dontShow"}>{OtdelFullInfos}</div>
                  </div>
+                 </>
     } else {
         result = <></>;
     }
